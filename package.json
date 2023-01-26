@@ -3,6 +3,7 @@
   "description": "Vuetify phone field",
   "version": "1.0.1",
   "type": "module",
+  "author": "Ibrahim Boubacar",
   "repository": {
     "type": "git",
     "url": "https://github.com/ibkhall/v-phone-field.git"

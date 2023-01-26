@@ -95,7 +95,7 @@ const onInput = (val: string) => {
 </script>
 
 <template>
-<div class="d-flex text-center">
+<div class="d-flex">
 <v-autocomplete :label="props.label ? country.name: ''" :density="props.density" style="max-width: 138px;" :readonly="($attrs.readonly as boolean)" :model-value="country.iso2" @update:model-value="onUpdate" variant="filled" item-value="iso2" item-title="name" class="flex-grow-0 rounded-s-xl" :items="codes">
   <template v-slot:selection="{item, props}">
   <v-avatar v-bind="props" :rounded="0" size="22">
