@@ -1,18 +1,39 @@
-# Vue 3 + TypeScript + Vite
+# Vuetify phone field
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+[![npm](https://img.shields.io/npm/v/@ibkhall/v-phone-field.svg)](http://npm.im/@ibkhall/v-phone-field)
 
-## Recommended IDE Setup
+![](./demo.gif)
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+A vuetify input telephone number
 
-## Type Support For `.vue` Imports in TS
+## Install
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+```bash
+npm install @ibkhall/v-phone-field
+```
+## Usage
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+```html
+<script setup>
+import VPhoneField from '@ibkhall/v-phone-field'
+import {ref} from 'veu'
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+const phone = ref('')
+</script>
+<template>
+<!-- some codes -->
+
+<VPhoneField v-model="phone"/>
+<!-- some codes -->
+</template>
+```
+
+
+
+## Props
+
+All VTextField props 
+
+## Events
+
+All VTextField events 
