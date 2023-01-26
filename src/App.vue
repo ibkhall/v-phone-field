@@ -8,7 +8,7 @@ import VPhoneField from './components/VPhoneField.vue';
     <v-container fluid>
         <v-row justify="center" align="center">
           <v-col md="5">
-            <VPhoneField />
+            <VPhoneField density="compact"/>
           </v-col>
         </v-row>
     </v-container>

@@ -1,12 +1,46 @@
 <script lang="ts" setup>
 import codes from '../helpers/coutries'
 import { parsePhoneNumber } from 'awesome-phonenumber'
-import "flag-icons/css/flag-icons.min.css";
+import CountryFlag from 'vue-country-flag-next'
 import {ref, reactive, onMounted} from 'vue'
-
+import { PropType } from 'vue'
+type Density = undefined | 'default' | 'comfortable' | 'compact';
 const props = defineProps({
   modelValue: String,
-  blur: Event,
+  appendOuterIcon: String,
+    autofocus: Boolean,
+    clearable: Boolean,
+    clearIcon: {
+      type: String,
+      default: '$clear',
+    },
+    counter: [Boolean, Number, String],
+    counterValue: Function as PropType<(value: any) => number>,
+    density: String as PropType<Density>,
+    filled: Boolean,
+    flat: Boolean,
+    fullWidth: Boolean,
+    label: String,
+    outlined: Boolean,
+    placeholder: String,
+    prefix: String,
+    prependInnerIcon: String,
+    persistentPlaceholder: Boolean,
+    reverse: Boolean,
+    rounded: Boolean,
+    shaped: Boolean,
+    singleLine: Boolean,
+    solo: Boolean,
+    soloInverted: Boolean,
+    suffix: String,
+    type: {
+      type: String,
+      default: 'text',
+    },
+  invalidMessage: {
+    type: String,
+    default: 'Invalid phone number.'
+  },
   name: {
     type: String,
     requird: true,
@@ -48,7 +82,7 @@ const onInput = (val: string) => {
     errors = []
     emit('valide')
   }else {
-    errors = [...errors, 'Numéro de téléphone invalide']
+    errors = [...errors, props.invalidMessage]
   }
   
 }
@@ -57,10 +91,12 @@ const onInput = (val: string) => {
 
 <template>
 <div class="d-flex text-center">
-<v-autocomplete :readonly="($attrs.readonly as boolean)" style="max-width: 138px;" :model-value="country.iso2" @update:model-value="onUpdate" variant="filled" item-value="iso2" item-title="name" class="flex-grow-0 rounded-s-xl" :items="codes">
+<v-autocomplete :label="props.label ? country.name: ''" :density="props.density" style="max-width: 138px;" :readonly="($attrs.readonly as boolean)" :model-value="country.iso2" @update:model-value="onUpdate" variant="filled" item-value="iso2" item-title="name" class="flex-grow-0 rounded-s-xl" :items="codes">
   <template v-slot:selection="{item, props}">
-  <v-avatar v-bind="props" variant="text" :rounded="0" size="22">
-    <span :class="'fi fi-'+item.value"></span>
+  <v-avatar v-bind="props" :rounded="0" size="22">
+    <span>
+      <CountryFlag :country='item.value' size='small'/>
+    </span>
   </v-avatar>
 </template>
 <template v-slot:append-inner>{{ prefix }}</template>
@@ -72,7 +108,9 @@ const onInput = (val: string) => {
     title=""
   >
   <v-avatar variant="text" :rounded="0" size="22">
-    <span :class="'fi fi-'+item.value"></span>
+    <span>
+      <CountryFlag :country='item.value' size='small'/>
+    </span>
   </v-avatar>
   {{ item.title }}
 </v-list-item>
@@ -80,12 +118,10 @@ const onInput = (val: string) => {
 
 </v-autocomplete>
   <v-text-field
-  variant="outlined"
-  class="flex-grow-1"
-    v-model="display_text"
-    @blur="props.blur"
+    class="flex-grow-1"
     :error-messages="errors"
-    v-bind="$attrs"
+    v-bind="(props as any)"
+    v-model="display_text"
     @update:model-value="onInput"
   >
  
