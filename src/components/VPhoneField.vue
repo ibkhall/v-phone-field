@@ -47,7 +47,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(['valide'])
+const emit = defineEmits(['valide', 'update:modelValue'])
 const value = ref(props.modelValue)
 let errors: string[] = reactive([])
 const prefix = ref('+227')
@@ -60,7 +60,8 @@ const country = ref({
 const onUpdate = (v: any) => {
   country.value = codes.find(el => el.iso2==v) as any
   prefix.value = '+'+country.value.dialCode
-
+  value.value = ''
+  display_text.value = ''
   onInput(value.value as string)
   
 }
@@ -74,16 +75,20 @@ onMounted(() => {
 })
   
 const onInput = (val: string) => {
-  
-  const pn = parsePhoneNumber(val, {regionCode: country.value.iso2});
+  emit('update:modelValue', val)
+  if(val !== '') {
+    const pn = parsePhoneNumber(val, {regionCode: country.value.iso2});
   if(pn.valid) {
     display_text.value = pn.number?.national
     value.value = pn.number?.e164
     errors = []
-    emit('valide')
+    emit('update:modelValue', value.value)
+    emit('valide', value.value)
   }else {
     errors = [...errors, props.invalidMessage]
   }
+  }
+  
   
 }
 

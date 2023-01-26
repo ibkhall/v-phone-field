@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import VPhoneField from './components/VPhoneField.vue';
+const phone = ref('')
 
 </script>
 
@@ -8,7 +10,7 @@ import VPhoneField from './components/VPhoneField.vue';
     <v-container fluid>
         <v-row justify="center" align="center">
           <v-col md="5">
-            <VPhoneField density="compact"/>
+            <VPhoneField v-model="phone" density="compact"/>
           </v-col>
         </v-row>
     </v-container>

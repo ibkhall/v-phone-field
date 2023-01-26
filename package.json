@@ -1,7 +1,7 @@
 {
   "name": "@ibkhall/v-phone-field",
   "description": "Vuetify phone field",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "repository": {
     "type": "git",
@@ -22,6 +22,17 @@
       "require": "./dist/v-phone-field.umd.cjs"
     }
   },
+  "keywords": [
+    "v-phone-field",
+    "Vuetify",
+    "Vuetify3",
+    "Vue",
+    "Vue3",
+    "Telephone",
+    "Phone input",
+    "Phone field",
+    "vuetify tel input"
+  ],
   "license": "MIT",
   "scripts": {
     "dev": "vite",
