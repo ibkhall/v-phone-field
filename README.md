@@ -4,7 +4,7 @@
 
 ![](./demo.gif)
 
-A vuetify input telephone number
+Vuetify telephone field
 
 ## Install
 
@@ -16,7 +16,7 @@ npm install @ibkhall/v-phone-field
 ```html
 <script setup>
 import VPhoneField from '@ibkhall/v-phone-field'
-import {ref} from 'veu'
+import {ref} from 'vue'
 
 const phone = ref('')
 </script>
@@ -36,4 +36,9 @@ All VTextField props
 
 ## Events
 
-All VTextField events 
+All VTextField events and @validate
+
+| Name        | Description                                        |
+|-------------|----------------------------------------------------|
+| @validate   | The phone number is valid                          |
+
