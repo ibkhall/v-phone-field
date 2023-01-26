@@ -2,9 +2,11 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import vue from "@vitejs/plugin-vue";
+import vuetify from 'vite-plugin-vuetify'
 export default defineConfig({
   plugins: [
     vue(),
+    vuetify(),
   ],
   build: {
     lib: {
@@ -23,6 +25,7 @@ export default defineConfig({
         // for externalized deps
         globals: {
           vue: 'Vue',
+          vuetify: 'Vuetify'
         },
       },
     },
