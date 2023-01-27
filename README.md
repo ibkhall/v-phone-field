@@ -47,3 +47,21 @@ All VTextField events and @validate
 |-------------|----------------------------------------------------|
 | @validate   | The phone number is valid                          |
 
+
+## License
+
+The MIT License.
+
+## Author
+
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/ibkhall.png?s=100" width="100">
+    </td>
+    <td>
+      Ibrahim Boubacar<br />
+      <a href="mailto:ibrahimkhall212@gmail.com">ibrahimkhall212@gmail.com</a><br />
+    </td>
+  </tr>
+</table>
