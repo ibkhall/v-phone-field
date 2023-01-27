@@ -1,7 +1,12 @@
 # Vuetify phone field
 
 [![npm](https://img.shields.io/npm/v/@ibkhall/v-phone-field.svg)](http://npm.im/@ibkhall/v-phone-field)
-
+<a href="https://www.npmjs.com/package/@ibkhall/v-phone-field">
+    <img src="https://img.shields.io/npm/dt/@ibkhall/v-phone-field.svg" alt="Downloads">
+  </a>
+  <a href="https://www.npmjs.com/package/@ibkhall/v-phone-field">
+    <img src="https://img.shields.io/npm/dm/@ibkhall/v-phone-field.svg" alt="Downloads">
+  </a>
 ![](./demo.gif)
 
 Vuetify telephone field
