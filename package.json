@@ -1,7 +1,7 @@
 {
   "name": "@ibkhall/v-phone-field",
   "description": "Vuetify phone field",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "type": "module",
   "author": "Ibrahim Boubacar",
   "repository": {

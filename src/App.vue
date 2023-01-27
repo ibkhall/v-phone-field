@@ -10,7 +10,7 @@ const phone = ref('')
     <v-container fluid>
         <v-row justify="center" align="center">
           <v-col md="5">
-            <VPhoneField v-model="phone" density="compact"/>
+            <VPhoneField invalid-message="Le numéro est invalide" v-model="phone" density="compact"/>
           </v-col>
         </v-row>
     </v-container>

@@ -37,7 +37,12 @@ const phone = ref('')
 
 ## Props
 
-All VTextField props 
+All VTextField props and following props
+
+| Name              | Default                                      |      Description                           |
+|-------------------|----------------------------------------------|--------------------------------------------|
+| default-country   | the country fetched from IP address of user  |    The country iso2 code(ex: ne for Niger) |
+| invalid-message   | Invalid phone number                         |    Error message to display when invalid   |
 
 ## Events
 
@@ -45,7 +50,7 @@ All VTextField events and @validate
 
 | Name        | Description                                        |
 |-------------|----------------------------------------------------|
-| @validate   | The phone number is valid                          |
+| @validate   | On phone number is valid                           |
 
 
 ## License

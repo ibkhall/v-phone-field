@@ -41,6 +41,10 @@ const props = defineProps({
     type: String,
     default: 'Invalid phone number.'
   },
+  defaultCountry: {
+    type: String,
+    default: 'af'
+  },
   name: {
     type: String,
     requird: true,
@@ -50,16 +54,31 @@ const props = defineProps({
 const emit = defineEmits(['valide', 'update:modelValue'])
 const value = ref(props.modelValue)
 let errors: string[] = reactive([])
-const prefix = ref('+227')
 const display_text = ref('')
-const country = ref({
-    name: 'Niger (Nijar)',
-    iso2: 'ne',
-    dialCode: '227'
-})
+const country = ref({iso2: '', dialCode: ''} as any)
+if(props.defaultCountry) {
+  country.value = codes.find(el => el.iso2==props.defaultCountry)
+}
+
+const iso2 =  () => {
+  if(navigator.onLine) {
+    return fetch('https://ip2c.org/s')
+    .then((response) => response.text())
+    .then((response) => {
+      const result = (response || '').toString();
+
+      if (!result || result[0] !== '1') {
+        throw new Error('unable to fetch the country');
+      }
+      country.value = codes.find(el => el.iso2==result.substr(2, 2).toLowerCase()) as any
+      
+    });
+  }
+  
+}
+
 const onUpdate = (v: any) => {
   country.value = codes.find(el => el.iso2==v) as any
-  prefix.value = '+'+country.value.dialCode
   value.value = ''
   display_text.value = ''
   onInput(value.value as string)
@@ -68,6 +87,7 @@ const onUpdate = (v: any) => {
 
 
 onMounted(() => {
+  iso2()
   if(value.value) {
     const pn = parsePhoneNumber(value.value as string)
     display_text.value = pn.number?.national as string
@@ -104,7 +124,7 @@ const onInput = (val: string) => {
     </span>
   </v-avatar>
 </template>
-<template v-slot:append-inner>{{ prefix }}</template>
+<template v-slot:append-inner>{{ country.dialCode ? '+'+country.dialCode : '' }}</template>
 
 <template v-slot:item="{item, props}">
   <v-list-item
