@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import VPhoneField from './components/VPhoneField.vue';
-const phone = ref('')
+const phone = ref('+22792714229')
 
 </script>
 

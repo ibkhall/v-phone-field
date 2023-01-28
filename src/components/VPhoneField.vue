@@ -43,7 +43,7 @@ const props = defineProps({
   },
   defaultCountry: {
     type: String,
-    default: 'af'
+    default: undefined
   },
   name: {
     type: String,
@@ -56,13 +56,13 @@ const value = ref(props.modelValue)
 let errors: string[] = reactive([])
 const display_text = ref('')
 const country = ref({iso2: '', dialCode: ''} as any)
-if(props.defaultCountry) {
-  country.value = codes.find(el => el.iso2==props.defaultCountry)
-}
 
-const iso2 =  () => {
-  if(navigator.onLine) {
-    return fetch('https://ip2c.org/s')
+
+const fetchCountry =  () => {
+  if(props.defaultCountry) {
+     country.value = codes.find(el => el.iso2==props.defaultCountry?.toLocaleLowerCase())
+  }else {
+    fetch('https://ip2c.org/s')
     .then((response) => response.text())
     .then((response) => {
       const result = (response || '').toString();
@@ -72,7 +72,7 @@ const iso2 =  () => {
       }
       country.value = codes.find(el => el.iso2==result.substr(2, 2).toLowerCase()) as any
       
-    });
+    }).catch(e => country.value = codes.find(el => el.iso2==codes[0].iso2));
   }
   
 }
@@ -87,10 +87,13 @@ const onUpdate = (v: any) => {
 
 
 onMounted(() => {
-  iso2()
+  
   if(value.value) {
     const pn = parsePhoneNumber(value.value as string)
     display_text.value = pn.number?.national as string
+    country.value = codes.find(el => el.iso2==pn.regionCode?.toLocaleLowerCase())
+  }else {
+    fetchCountry()
   }
 })
   
