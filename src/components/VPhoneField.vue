@@ -79,25 +79,12 @@ const fetchCountry =  () => {
 
 const onUpdate = (v: any) => {
   country.value = codes.find(el => el.iso2==v) as any
-  verifyNumber(display_text.value)
+  value.value = ''
+  display_text.value = ''
+  onInput(value.value as string)
   
 }
 
-const verifyNumber = (val: string) => {
-  const pn = parsePhoneNumber(val, {regionCode: country.value.iso2});
-  
-  if(pn.valid) {
-    display_text.value = pn.number?.national
-    value.value = pn.number?.e164
-    errors = []
-    emit('update:modelValue', value.value)
-    emit('valide', value.value)
-  }else {
-    display_text.value = pn.number?.national as string
-    value.value = pn.number?.e164
-    errors = [...errors, props.invalidMessage]
-  }
-}
 
 onMounted(() => {
   
@@ -113,7 +100,16 @@ onMounted(() => {
 const onInput = (val: string) => {
   emit('update:modelValue', val)
   if(val !== '') {
-    verifyNumber(val)
+    const pn = parsePhoneNumber(val, {regionCode: country.value.iso2});
+  if(pn.valid) {
+    display_text.value = pn.number?.national
+    value.value = pn.number?.e164
+    errors = []
+    emit('update:modelValue', value.value)
+    emit('valide', value.value)
+  }else {
+    errors = [...errors, props.invalidMessage]
+  }
   }
   
   
